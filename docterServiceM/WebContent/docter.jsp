@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<%
+<%-- <%
 	//Initialize---------------------------
 session.setAttribute("statusMsg", "");
 System.out.println("Tryingto process...");
@@ -33,7 +33,7 @@ if (request.getParameter("hidItemIDDelete") != null) {
 	session.setAttribute("statusMsg", stsMsg);
 }
 %>
-
+ --%>
 
 
 <!DOCTYPE html>

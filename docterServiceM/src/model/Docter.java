@@ -51,13 +51,21 @@ public class Docter {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
+			
+			String newItems = readdocter(); 
+			output = "{\"status\":\"success\", \"data\": \"" +
+					 newItems + "\"}"; 
 
-			output = "Inserted successfully";
-			System.out.println(" insert");
+			//output = "Inserted successfully";
+			//System.out.println(" insert");
 		} catch (Exception e) {
-			output = "Error while inserting";
-			System.err.println(e.getMessage());
-			System.out.println("not insert");
+			
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
+					System.err.println(e.getMessage());  
+			
+			//output = "Error while inserting";
+			//System.err.println(e.getMessage());
+			//System.out.println("not insert");
 		}
 
 		return output;
@@ -88,19 +96,26 @@ public class Docter {
 				String gender = rs.getString("gender");
 				String phoneNo = rs.getString("phoneNo");
 
+				
+				
 				// Add into the html table
-				output += "<tr><td><input id=\"hidItemIDUpdate\" name=\"hidItemIDUpdate\" type=\"hidden\" value=\""
-						+ docID + "\">" + firstName + "</td>";
-				output += "<td>" + lastName + "</td>";
-				output += "<td>" + address + "</td>";
-				output += "<td>" + description + "</td>";
-				output += "<td>" + speciality + "</td>";
-				output += "<td>" + qualification + "</td>";
-				output += "<td>" + gender + "</td>";
-				output += "<td>" + phoneNo + "</td>";
+				 output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden'value='" + docID + "'>" 
+				+ firstName + "</td>";
+				 output += "<td>" + lastName + "</td>";
+				 output += "<td>" + address + "</td>";
+				 output += "<td>" + description + "</td>";
+				 output += "<td>" + speciality + "</td>"; 
+				 output += "<td>" + qualification + "</td>";
+				 output += "<td>" + gender + "</td>";
+				 output += "<td>" + phoneNo + "</td>";
+				
 				// buttons
-				output += "<td><input name=\"btnUpdate\" type=\"button\" value=\"Update\" class=\" btnUpdate btn btn-secondary\"></td> <td><form method=\"post\" action=\"docter.jsp\">  <input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">  <input name=\"hidItemIDDelete\" type=\"hidden\" value=\""
-						+ docID + "\">" + "</form></td>      </tr>";
+					output += "<td><input name='btnUpdate' type='button' value='Update' class=' btnUpdate btn btn-secondary'></td> "
+							+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'  data-itemid='"
+							+ docID + "'>" + "</td></tr>";
+				 
+
+				
 			}
 			con.close();
 
@@ -139,10 +154,19 @@ public class Docter {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Updated successfully";
+			
+			String newItems = readdocter(); 
+			output = "{\"status\":\"success\", \"data\": \"" +
+					 newItems + "\"}"; 
+			
+			//output = "Updated successfully";
 		} catch (Exception e) {
-			output = "Error while updating the item.";
-			System.err.println(e.getMessage());
+			
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
+			System.err.println(e.getMessage()); 
+			
+			//output = "Error while updating the item.";
+			//System.err.println(e.getMessage());
 		}
 		return output;
 	}
@@ -183,10 +207,19 @@ public class Docter {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Deleted successfully";
+			
+			String newItems = readdocter(); 
+			output = "{\"status\":\"success\", \"data\": \"" +
+					 newItems + "\"}"; 
+			
+			//output = "Deleted successfully";
 		} catch (Exception e) {
-			output = "Error while deleting the item.";
-			System.err.println(e.getMessage());
+			
+			output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
+			System.err.println(e.getMessage()); 
+			
+			//output = "Error while deleting the item.";
+			//System.err.println(e.getMessage());
 		}
 		return output;
 	}

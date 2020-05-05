@@ -34,7 +34,7 @@ public class Docter {
 			}
 
 			// create a prepared statement
-			String query = "insert into docter values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "insert into docter values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement preparedStmt = (PreparedStatement) con.prepareStatement(query);
 
@@ -53,8 +53,7 @@ public class Docter {
 			con.close();
 			
 			String newItems = readdocter(); 
-			output = "{\"status\":\"success\", \"data\": \"" +
-					 newItems + "\"}"; 
+			output = "{\"status\":\"success\", \"data\": \"" + newItems + "\"}"; 
 
 			//output = "Inserted successfully";
 			//System.out.println(" insert");
@@ -99,8 +98,8 @@ public class Docter {
 				
 				
 				// Add into the html table
-				 output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden'value='" + docID + "'>" 
-				+ firstName + "</td>";
+				 output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden'value='" + docID 
+						 + "'>" + firstName + "</td>";
 				 output += "<td>" + lastName + "</td>";
 				 output += "<td>" + address + "</td>";
 				 output += "<td>" + description + "</td>";
@@ -111,10 +110,8 @@ public class Docter {
 				
 				// buttons
 					output += "<td><input name='btnUpdate' type='button' value='Update' class=' btnUpdate btn btn-secondary'></td> "
-							+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'  data-itemid='"
+							+ "<td><input name='btnRemove' type='button' value='Remove' class='btn btn-danger'  data-itemid='" 
 							+ docID + "'>" + "</td></tr>";
-				 
-
 				
 			}
 			con.close();
@@ -215,8 +212,8 @@ public class Docter {
 			//output = "Deleted successfully";
 		} catch (Exception e) {
 			
-			output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
-			System.err.println(e.getMessage()); 
+			output = "{\"status\":\"error\", \"data\": \"Error while deleting the item.\"}";
+					 System.err.println(e.getMessage()); 
 			
 			//output = "Error while deleting the item.";
 			//System.err.println(e.getMessage());

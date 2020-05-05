@@ -2,38 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<%-- <%
-	//Initialize---------------------------
-session.setAttribute("statusMsg", "");
-System.out.println("Tryingto process...");
-
-//Save---------------------------------
-if (request.getParameter("firstName") != null) {
-	Docter itemObj = new Docter();
-	String stsMsg = "";
-	//Insert--------------------------
-	if (request.getParameter("hidItemIDSave") == "") {
-		stsMsg = itemObj.insertdocter(request.getParameter("firstName"), request.getParameter("lastName"),
-		request.getParameter("address"), request.getParameter("description"),
-		request.getParameter("speciality"), request.getParameter("qualification"),
-		request.getParameter("gender"), request.getParameter("phoneNo"));
-	} else//Update----------------------
-	{
-		stsMsg = itemObj.updatedocter(request.getParameter("hidItemIDSave"), request.getParameter("firstName"),
-		request.getParameter("lastName"), request.getParameter("address"), request.getParameter("description"),
-		request.getParameter("speciality"), request.getParameter("qualification"),
-		request.getParameter("gender"), request.getParameter("phoneNo"));
-	}
-	session.setAttribute("statusMsg", stsMsg);
-}
-//Delete-----------------------------
-if (request.getParameter("hidItemIDDelete") != null) {
-	Docter itemObj = new Docter();
-	String stsMsg = itemObj.deletedocter(request.getParameter("hidItemIDDelete"));
-	session.setAttribute("statusMsg", stsMsg);
-}
-%>
- --%>
 
 
 <!DOCTYPE html>
@@ -123,13 +91,14 @@ div.container {
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-10">
+			<div id="divItemsGrid">
 
 					<%
 						Docter itemObj = new Docter();
-					out.print(itemObj.readdocter());
+						out.print(itemObj.readdocter());
 					%>
-
-
+			</div>
+				
 				</div>
 
 				<div class="col-sm-1"></div>

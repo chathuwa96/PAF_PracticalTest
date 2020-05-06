@@ -8,18 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Doctor Management</title>
-
-<style>
-div.container {
-	border-radius: 5px;
-	background-color: #f2f2f2;
-	padding: 20px;
-	width: 96%;
-	margin: auto;
-}
-</style>
-
+<title>Items Management</title>
 <link rel="stylesheet" href="Views/bootstrap.min.css">
 <script src="Components/jquery-3.2.1.min.js"></script>
 <script src="Components/items.js"></script>
@@ -27,10 +16,7 @@ div.container {
 <body>
 	<div class="container">
 		<div class="row">
-
-			<div class="col-sm-2"></div>
-			<div class="col-sm-8">
-
+			<div class="col-6">
 				<h1 align="center">Doctor Management</h1>
 
 				<form id="formItem" name="formItem" method="post"
@@ -70,44 +56,16 @@ div.container {
 						value="Save" class="btn btn-primary btn-lg btn-block"> <input
 						type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
 				</form>
-
-				<div id="alertSuccess" class="alert alert-success">
-					<%
-						out.print(session.getAttribute("statusMsg"));
-					%>
-				</div>
+				<div id="alertSuccess" class="alert alert-success"></div>
 				<div id="alertError" class="alert alert-danger"></div>
-
 				<br>
-
-
-				<div class="col-sm-2"></div>
-			</div>
-		</div>
-		<br> <br>
-
-		<div class="container">
-			<br>
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-10">
-			<div id="divItemsGrid">
-
+				<div id="divItemsGrid">
 					<%
 						Docter itemObj = new Docter();
 						out.print(itemObj.readdocter());
 					%>
-			</div>
-				
 				</div>
-
-				<div class="col-sm-1"></div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
-
-
-
-

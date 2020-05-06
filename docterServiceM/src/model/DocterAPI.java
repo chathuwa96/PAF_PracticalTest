@@ -37,7 +37,7 @@ public class DocterAPI extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -48,14 +48,14 @@ public class DocterAPI extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String output = itemObj.insertdocter(request.getParameter("firstname"), request.getParameter("lastName"),
+		String output = itemObj.insertdocter(request.getParameter("firstName"), request.getParameter("lastName"),
 				request.getParameter("address"), request.getParameter("description"),
 				request.getParameter("speciality"), request.getParameter("qualification"),
 				request.getParameter("gender"), request.getParameter("phoneNo"));
 
 		response.getWriter().write(output);
 
-		// doGet(request, response);
+		//doGet(request, response);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class DocterAPI extends HttpServlet {
 
 		Map paras = getParasMap(request);
 
-		String output = itemObj.updatedocter(paras.get("hidItemIDSave").toString(), paras.get("firstname").toString(),
+		String output = itemObj.updatedocter(paras.get("hidItemIDSave").toString(), paras.get("firstName").toString(),
 				paras.get("lastName").toString(), paras.get("address").toString(), paras.get("description").toString(),
 				paras.get("speciality").toString(), paras.get("qualification").toString(),
 				paras.get("gender").toString(), paras.get("phoneNo").toString());
@@ -93,7 +93,8 @@ public class DocterAPI extends HttpServlet {
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			Scanner scanner = new Scanner(request.getInputStream(), "UTF-8");
-			String queryString = scanner.hasNext() ? scanner.useDelimiter("\\A").next() : "";
+			String queryString = scanner.hasNext() ? 
+					scanner.useDelimiter("\\A").next() : "";
 			scanner.close();
 			String[] params = queryString.split("&");
 			for (String param : params) {

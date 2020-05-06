@@ -30,11 +30,11 @@ public class Docter {
 			Connection con = connect();
 
 			if (con == null) {
-				return "Error while connecting to the database";
+				return "\nError while connecting to the database";
 			}
 
 			// create a prepared statement
-			String query = "insert into docter values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "insert into docter values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement preparedStmt = (PreparedStatement) con.prepareStatement(query);
 
@@ -51,20 +51,20 @@ public class Docter {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			
-			String newItems = readdocter(); 
-			output = "{\"status\":\"success\", \"data\": \"" + newItems + "\"}"; 
 
-			//output = "Inserted successfully";
-			//System.out.println(" insert");
+			String newItems = readdocter();
+			output = "{\"status\":\"success\", \"data\": \"" + newItems + "\"}";
+
+			// output = "Inserted successfully";
+			// System.out.println(" insert");
 		} catch (Exception e) {
-			
+
 			output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
-					System.err.println(e.getMessage());  
-			
-			//output = "Error while inserting";
-			//System.err.println(e.getMessage());
-			//System.out.println("not insert");
+			System.err.println(e.getMessage());
+
+			// output = "Error while inserting";
+			// System.err.println(e.getMessage());
+			// System.out.println("not insert");
 		}
 
 		return output;
@@ -95,24 +95,22 @@ public class Docter {
 				String gender = rs.getString("gender");
 				String phoneNo = rs.getString("phoneNo");
 
-				
-				
 				// Add into the html table
-				 output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden'value='" + docID 
-						 + "'>" + firstName + "</td>";
-				 output += "<td>" + lastName + "</td>";
-				 output += "<td>" + address + "</td>";
-				 output += "<td>" + description + "</td>";
-				 output += "<td>" + speciality + "</td>"; 
-				 output += "<td>" + qualification + "</td>";
-				 output += "<td>" + gender + "</td>";
-				 output += "<td>" + phoneNo + "</td>";
-				
+				output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden'value='" + docID
+						+ "'>" + firstName + "</td>";
+				output += "<td>" + lastName + "</td>";
+				output += "<td>" + address + "</td>";
+				output += "<td>" + description + "</td>";
+				output += "<td>" + speciality + "</td>";
+				output += "<td>" + qualification + "</td>";
+				output += "<td>" + gender + "</td>";
+				output += "<td>" + phoneNo + "</td>";
+
 				// buttons
-					output += "<td><input name='btnUpdate' type='button' value='Update' class=' btnUpdate btn btn-secondary'></td> "
-							+ "<td><input name='btnRemove' type='button' value='Remove' class='btn btn-danger'  data-itemid='" 
-							+ docID + "'>" + "</td></tr>";
-				
+				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td> "
+						+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger'  data-docid='"
+						+ docID + "'>" + "</td></tr>";
+
 			}
 			con.close();
 
@@ -138,6 +136,7 @@ public class Docter {
 			// create a prepared statement
 			String query = "UPDATE docter SET firstName=?, lastName=?, address=?, description=?, speciality=?, qualification=?, gender=?, phoneNo=? WHERE docID=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
+			
 			// binding values
 			preparedStmt.setString(1, firstName);
 			preparedStmt.setString(2, lastName);
@@ -148,45 +147,25 @@ public class Docter {
 			preparedStmt.setString(7, gender);
 			preparedStmt.setString(8, phoneNo);
 			preparedStmt.setInt(9, Integer.parseInt(docID));
+			
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			
-			String newItems = readdocter(); 
-			output = "{\"status\":\"success\", \"data\": \"" +
-					 newItems + "\"}"; 
-			
-			//output = "Updated successfully";
+
+			String newItems = readdocter();
+			output = "{\"status\":\"success\", \"data\": \"" + newItems + "\"}";
+
+			// output = "Updated successfully";
 		} catch (Exception e) {
-			
+
 			output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
-			System.err.println(e.getMessage()); 
-			
-			//output = "Error while updating the item.";
-			//System.err.println(e.getMessage());
+			System.err.println(e.getMessage());
+
+			// output = "Error while updating the item.";
+			// System.err.println(e.getMessage());
 		}
 		return output;
 	}
-
-	/*
-	 * public String updatedocter(String docID,String firstName, String lastName,
-	 * String address, String description,String speciality,String
-	 * qualification,String gender,String phoneNo) { String output = ""; try {
-	 * Connection con = connect(); if (con == null) {return
-	 * "Error while connecting to the database for updating."; } // create a
-	 * prepared statement String query =
-	 * "UPDATE items SET firstName=?,lastName=?,address=?,description=?,speciality=?,qualification=?,gender=?,phoneNo=? WHERE itemID=?"
-	 * ; PreparedStatement preparedStmt = con.prepareStatement(query); // binding
-	 * values preparedStmt.setInt(1, 0); preparedStmt.setString(2, firstName);
-	 * preparedStmt.setString(3, lastName); preparedStmt.setString(4, address);
-	 * preparedStmt.setString(5, description); preparedStmt.setString(6,
-	 * speciality); preparedStmt.setString(7, qualification);
-	 * preparedStmt.setString(8, gender); preparedStmt.setString(9, phoneNo); //
-	 * execute the statement preparedStmt.execute(); con.close(); output =
-	 * "Updated successfully"; } catch (Exception e) { output =
-	 * "Error while updating the item."; System.err.println(e.getMessage()); }
-	 * return output; }
-	 */
 
 	public String deletedocter(String docID) {
 		String output = "";
@@ -204,19 +183,18 @@ public class Docter {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			
-			String newItems = readdocter(); 
-			output = "{\"status\":\"success\", \"data\": \"" +
-					 newItems + "\"}"; 
-			
-			//output = "Deleted successfully";
+
+			String newItems = readdocter();
+			output = "{\"status\":\"success\", \"data\": \"" + newItems + "\"}";
+
+			// output = "Deleted successfully";
 		} catch (Exception e) {
-			
+
 			output = "{\"status\":\"error\", \"data\": \"Error while deleting the item.\"}";
-					 System.err.println(e.getMessage()); 
-			
-			//output = "Error while deleting the item.";
-			//System.err.println(e.getMessage());
+			System.err.println(e.getMessage());
+
+			// output = "Error while deleting the item.";
+			// System.err.println(e.getMessage());
 		}
 		return output;
 	}

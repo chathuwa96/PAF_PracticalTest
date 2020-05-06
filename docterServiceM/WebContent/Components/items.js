@@ -30,7 +30,7 @@ if (status != true)
 
 // If valid------------------------
 
-//$("#formItem").submit();
+
 
 var type = ($("#hidItemIDSave").val() == "") ? "POST" : "PUT";
 
@@ -45,13 +45,15 @@ $.ajax(
 		 onItemSaveComplete(response.responseText, status);
 		 }
 		});
-});
 
+});
+//$("#formItem").submit();
 function onItemSaveComplete(response, status)
 	{
 	if (status == "success")
 	 {
 	 var resultSet = JSON.parse(response);
+	 
 	 if (resultSet.status.trim() == "success")
 	 {
 	 $("#alertSuccess").text("Successfully saved.");
@@ -83,7 +85,7 @@ $(document).on("click", ".btnRemove", function(event)
 		 {
 		 url : "DocterAPI",
 		 type : "DELETE",
-		 data : "docID=" + $(this).data("itemid"),
+		 data : "docID=" + $(this).data("docid"),
 		 dataType : "text",
 		 complete : function(response, status)
 		 {
